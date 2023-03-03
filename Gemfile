@@ -35,15 +35,23 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'pry'
   gem 'jsonapi-serializer'
+  gem 'faraday'
+  gem 'factory_bot_rails'
+  gem 'figaro'
+end
+
+group :test do
+  gem 'webmock'
+  gem 'vcr'
+  gem 'faker'
+  gem 'simplecov'
+  gem 'shoulda-matchers'
 end
 
 group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
 end
 
-group :test do
-
-end
 
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
