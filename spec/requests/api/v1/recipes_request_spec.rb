@@ -4,7 +4,7 @@ RSpec.describe 'recipes request', :vcr do
   let(:headers) { { 'CONTENT_TYPE' => 'application/json' } }
 
   describe 'recipes index' do
-    context 'country passed in' do
+    context 'country query param' do
       before do
         get api_v1_recipes_path,
           headers: headers,
@@ -38,10 +38,29 @@ RSpec.describe 'recipes request', :vcr do
         end
       end
     end
-    # context 'no query param' do
-    #   get api_v1_recipes_path
 
-      
-    # end
+    describe 'edge cases' do
+      context 'no query param' do
+        it 'returns a hash with empty array' do
+          get api_v1_recipes_path, 
+            headers: headers
+          
+          recipes = JSON.parse(response.body, symbolize_names: true)[:data]
+
+          expect(recipes).to eq([])
+        end
+      end
+
+      context 'no results found' do
+        it 'returns a hash with empty array' do
+          get api_v1_recipes_path, 
+            headers: headers, 
+            params: JSON.generate(country: 'jfgoisajdfbgoinaisjdfo')
+
+          recipes = JSON.parse(response.body, symbolize_names: true)[:data]
+          expect(recipes).to eq([])
+        end
+      end
+    end
   end
 end
