@@ -7,6 +7,6 @@ class Api::V1::RecipesController < ApplicationController
   private
 
     def recipe_params
-      params.fetch(:country, [])
+      params.fetch(:country, CountryFacade.load_random_country)
     end
 end
