@@ -1,15 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe 'recipes request', :vcr do
-  let(:headers) { { 'CONTENT_TYPE' => 'application/json' } }
-
   describe 'recipes index' do
-    context 'country query param' do
-      before do
-        get api_v1_recipes_path,
-          headers: headers,
-          params: JSON.generate(country: 'Norway')
-      end
+    describe 'country query param' do
+      before { get api_v1_recipes_path, params: { country: 'Norway'} }
 
       it 'returns recipes for that country' do
         expect(response).to be_successful
@@ -40,10 +34,31 @@ RSpec.describe 'recipes request', :vcr do
     end
 
     describe 'edge cases' do
-      context 'no query param' do
+      context 'no params passed' do
+        it 'picks random country using CountryService' do
+          get api_v1_recipes_path
+
+          expect(response).to be_successful
+
+          recipes = JSON.parse(response.body, symbolize_names: true)[:data]
+  
+          expect(recipes).to be_an(Array)
+  
+          recipes.each do |recipe|
+            expect(recipe[:id]).to be(nil)
+            expect(recipe[:type]).to eq('recipe')
+  
+            expect(recipe[:attributes][:title]).to be_a(String)
+            expect(recipe[:attributes][:url]).to be_a(String)
+            expect(recipe[:attributes][:country]).to be_a(String)
+            expect(recipe[:attributes][:image]).to be_a(String)
+          end
+        end
+      end
+
+      context 'country param is empty string' do
         it 'returns a hash with empty array' do
-          get api_v1_recipes_path, 
-            headers: headers
+          get api_v1_recipes_path, params: { country: '' }
           
           recipes = JSON.parse(response.body, symbolize_names: true)[:data]
 
@@ -53,9 +68,7 @@ RSpec.describe 'recipes request', :vcr do
 
       context 'no results found' do
         it 'returns a hash with empty array' do
-          get api_v1_recipes_path, 
-            headers: headers, 
-            params: JSON.generate(country: 'jfgoisajdfbgoinaisjdfo')
+          get api_v1_recipes_path, params: { country: 'jfgoisajdfbgoinaisjdfo' }
 
           recipes = JSON.parse(response.body, symbolize_names: true)[:data]
           expect(recipes).to eq([])
