@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Recipe, :vcr do
   it 'has attributes' do
-    recipe = RecipeFacade.load_recipes('Norway')[0]
+    recipe = RecipesFacade.load_recipes('Norway')[0]
 
     expect(recipe.id).to be_nil
     expect(recipe.title).to be_a(String)

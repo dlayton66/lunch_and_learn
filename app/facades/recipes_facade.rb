@@ -1,7 +1,7 @@
-class RecipeFacade
+class RecipesFacade
   def self.load_recipes(country)
-    response = RecipeService.get_recipes(country)
-    parsed_response = RecipeService.parse_json(response)
+    response = RecipesService.get_recipes(country)
+    parsed_response = RecipesService.parse_json(response)
     recipes = parsed_response[:hits]
 
     recipes.map do |recipe|

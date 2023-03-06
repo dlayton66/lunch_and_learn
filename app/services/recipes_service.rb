@@ -1,4 +1,4 @@
-class RecipeService < BaseService
+class RecipesService < BaseService
   def self.conn
     Faraday.new(
       url: 'https://api.edamam.com/api/recipes/v2/',

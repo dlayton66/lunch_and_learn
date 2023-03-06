@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe RecipeService, :vcr do
+RSpec.describe RecipesService, :vcr do
   it 'gets recipes by country' do
-    response = RecipeService.get_recipes('Norway')
+    response = RecipesService.get_recipes('Norway')
 
     expect(response.status).to eq(200)
 
