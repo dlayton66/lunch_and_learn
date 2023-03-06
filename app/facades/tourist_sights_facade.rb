@@ -1,6 +1,6 @@
 class TouristSightsFacade
   def self.load_tourist_sights(country)
-    capital = CountryFacade.find_capital(country)
+    capital = CountriesFacade.find_capital(country)
     response = TouristSightsService.get_tourist_sights(capital[:latlng])
     tourist_sights = TouristSightsService.parse_json(response)[:features]
 

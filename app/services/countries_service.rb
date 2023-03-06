@@ -1,4 +1,4 @@
-class CountryService < BaseService
+class CountriesService < BaseService
   def self.conn
     Faraday.new(
       url: 'https://restcountries.com/v3.1/'

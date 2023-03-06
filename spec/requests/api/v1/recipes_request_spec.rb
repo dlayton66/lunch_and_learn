@@ -35,7 +35,7 @@ RSpec.describe 'recipes request', :vcr do
 
     describe 'edge cases' do
       context 'no params passed' do
-        it 'picks random country using CountryService' do
+        it 'picks random country using CountriesService' do
           get api_v1_recipes_path
 
           expect(response).to be_successful

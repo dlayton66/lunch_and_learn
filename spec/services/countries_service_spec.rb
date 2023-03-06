@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe CountryService, :vcr do
+RSpec.describe CountriesService, :vcr do
   it 'gets a list of all countries' do
-    response = CountryService.get_countries
+    response = CountriesService.get_countries
 
     expect(response.status).to eq(200)
 
@@ -16,7 +16,7 @@ RSpec.describe CountryService, :vcr do
   end
 
   it 'gets info for a country' do
-    response = CountryService.get_country('France')
+    response = CountriesService.get_country('France')
 
     expect(response.status).to eq(200)
 
