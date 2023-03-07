@@ -12,7 +12,7 @@ RSpec.describe 'users request' do
         password_confirmation: "password123"
       } }
     
-      before { post api_v1_users_path, headers: headers, params: JSON.generate(user: payload) }
+      before { post api_v1_users_path, headers: headers, params: JSON.generate(payload) }
 
       it 'creates a user in the database' do
         user = User.last
@@ -45,7 +45,7 @@ RSpec.describe 'users request' do
           password_confirmation: "GOD"
         }
   
-        post api_v1_users_path, headers: headers, params: JSON.generate(user: bad_password_payload)
+        post api_v1_users_path, headers: headers, params: JSON.generate(bad_password_payload)
 
         expect(response.status).to eq(400)
         expect(User.all).to be_empty
@@ -71,7 +71,7 @@ RSpec.describe 'users request' do
           password_confirmation: "password123"
         }
 
-        post api_v1_users_path, headers: headers, params: JSON.generate(user: bad_email_payload)
+        post api_v1_users_path, headers: headers, params: JSON.generate(bad_email_payload)
 
         expect(response.status).to eq(400)
         expect(User.count).to eq(1)

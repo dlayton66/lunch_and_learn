@@ -1,8 +1,9 @@
 class Api::V1::SessionsController < ApplicationController
   rescue_from BadPasswordError, with: :bad_password_response
+
   def create
-    user = User.find_by(email: params[:session][:email])
-    if user&.authenticate(params[:session][:password])
+    user = User.find_by(email: params[:email])
+    if user&.authenticate(params[:password])
       render json: UserSerializer.new(user)
     else
       raise BadPasswordError

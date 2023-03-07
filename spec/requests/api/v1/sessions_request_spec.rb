@@ -18,7 +18,7 @@ RSpec.describe 'sessions request' do
         password: 'password123'
       }
 
-      post api_v1_sessions_path, headers: headers, params: JSON.generate(session: payload)
+      post api_v1_sessions_path, headers: headers, params: JSON.generate(payload)
 
       expect(response.status).to eq(200)
 
@@ -39,7 +39,7 @@ RSpec.describe 'sessions request' do
           password: 'GOD'
         }
   
-        post api_v1_sessions_path, headers: headers, params: JSON.generate(session: payload)
+        post api_v1_sessions_path, headers: headers, params: JSON.generate(payload)
 
         expect(response.status).to eq(400)
 
