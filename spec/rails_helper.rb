@@ -13,6 +13,9 @@ VCR.configure do |config|
   config.configure_rspec_metadata!
   config.filter_sensitive_data('<APP_ID>') { ENV['APP_ID'] }
   config.filter_sensitive_data('<APP_KEY>') { ENV['APP_KEY'] }
+  config.filter_sensitive_data('<PLACES_API_KEY>') { ENV['PLACES_API_KEY'] }
+  config.filter_sensitive_data('<YOUTUBE_API_KEY>') { ENV['YOUTUBE_API_KEY'] }
+  config.filter_sensitive_data('<UNSPLASH_ACCESS_KEY>') { ENV['UNSPLASH_ACCESS_KEY'] }
 end
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
