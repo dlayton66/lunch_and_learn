@@ -4,6 +4,7 @@ RSpec.describe Recipe, :vcr do
   it 'has attributes' do
     recipe = RecipesFacade.load_recipes('Norway')[0]
 
+    expect(recipe).to be_a(Recipe)
     expect(recipe.id).to be_nil
     expect(recipe.title).to be_a(String)
     expect(recipe.url).to be_a(String)
