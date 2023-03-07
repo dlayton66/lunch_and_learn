@@ -1,4 +1,4 @@
-class YoutubeService < BaseService
+class YoutubeService
   def self.conn
     Faraday.new(
       url: 'https://youtube.googleapis.com/youtube/v3/',

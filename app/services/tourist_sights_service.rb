@@ -1,4 +1,4 @@
-class TouristSightsService < BaseService
+class TouristSightsService
   def self.conn
     Faraday.new(
       url: 'https://api.geoapify.com/v2/',
