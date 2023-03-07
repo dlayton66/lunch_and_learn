@@ -6,7 +6,7 @@ RSpec.describe 'recipe facade', :vcr do
 
     expect(recipes).to be_an(Array)
     recipes.each do |recipe|
-      expect(recipe.class).to be(Recipe)
+      expect(recipe).to be_a(Recipe)
     end
   end
 end

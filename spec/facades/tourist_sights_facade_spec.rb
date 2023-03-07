@@ -6,7 +6,7 @@ RSpec.describe TouristSightsFacade, :vcr do
 
     expect(tourist_sights).to be_an(Array)
     tourist_sights.each do |tourist_sight|
-      expect(tourist_sight.class).to be(TouristSight)
+      expect(tourist_sight).to be_a(TouristSight)
     end
   end
 end
