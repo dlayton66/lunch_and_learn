@@ -2,8 +2,7 @@ class YoutubeService
   def self.conn
     Faraday.new(
       url: 'https://youtube.googleapis.com/youtube/v3/',
-      params: 
-      {
+      params: {
         part: 'snippet',
         key: ENV['YOUTUBE_API_KEY']
       }
