@@ -25,5 +25,25 @@ RSpec.describe 'learning resources request', :vcr do
         end
       end
     end
+
+    describe 'edge cases' do
+      context 'no results found' do
+        it 'video and image attributes point to empty objects' do
+          get api_v1_learning_resources_path(country: 'asjdfkjaoibkjaoijoiawntonb')
+
+          expect(response).to be_successful
+  
+          learning_resource = JSON.parse(response.body, symbolize_names: true)[:data]
+  
+          expect(learning_resource[:id]).to be_nil
+          expect(learning_resource[:type]).to eq('learning_resource')
+          expect(learning_resource[:attributes][:country]).to eq('asjdfkjaoibkjaoijoiawntonb')
+          expect(learning_resource[:attributes][:video]).to be_a(Hash)
+          expect(learning_resource[:attributes][:video]).to be_empty
+          expect(learning_resource[:attributes][:images]).to be_an(Array)
+          expect(learning_resource[:attributes][:images]).to be_empty
+        end
+      end
+    end
   end
 end

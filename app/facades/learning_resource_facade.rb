@@ -11,6 +11,22 @@ class LearningResourceFacade
 
   private
 
+    def self.learning_resource_info(country, video_info, images_info)
+      {
+        country: country,
+        video: video_hash(video_info),
+        images: images_array(images_info)
+      }
+    end
+
+    def self.video_hash(video_info)
+      return {} unless video_info
+      {
+        title: video_info[:snippet][:title],
+        youtube_video_id: video_info[:id][:videoId]
+      }
+    end
+
     def self.images_array(images_info)
       images_info.map do |image_info|
         {
@@ -18,16 +34,5 @@ class LearningResourceFacade
           url: image_info[:urls][:raw]
         }
       end
-    end
-
-    def self.learning_resource_info(country, video_info, images_info)
-      {
-        country: country,
-        video: {
-          title: video_info[:snippet][:title],
-          youtube_video_id: video_info[:id][:videoId]
-        },
-        images: images_array(images_info)
-      }
     end
 end
