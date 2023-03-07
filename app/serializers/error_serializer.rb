@@ -12,8 +12,12 @@ class ErrorSerializer
   private
 
     def get_errors_array(exception)
-      exception.record.errors.full_messages.map do |message|
-        { detail: message }
+      if defined?(exception.record)
+        exception.record.errors.full_messages.map do |message|
+          { detail: message }
+        end
+      else
+        [{detail: exception.message}]
       end
     end
 end
