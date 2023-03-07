@@ -1,12 +1,12 @@
-class LearningResourcesFacade
-  def self.load_learning_resources(country)
+class LearningResourceFacade
+  def self.load_learning_resource(country)
     video_response = YoutubeService.get_mr_history_video(country)
     video_info = BaseService.parse_json(video_response)[:items][0]
 
     images_response = UnsplashService.find_images(country)
     images_info = BaseService.parse_json(images_response)[:results]
 
-    LearningResources.new(learning_resources_info(country,video_info,images_info))
+    LearningResource.new(learning_resource_info(country,video_info,images_info))
   end
 
   private
@@ -20,7 +20,7 @@ class LearningResourcesFacade
       end
     end
 
-    def self.learning_resources_info(country, video_info, images_info)
+    def self.learning_resource_info(country, video_info, images_info)
       {
         country: country,
         video: {
