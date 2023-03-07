@@ -4,6 +4,8 @@ class User < ApplicationRecord
   validates :name, presence: true
   validates :email, uniqueness: true, presence: true
 
+  has_many :favorites
+
   has_secure_password
 
   private
