@@ -36,6 +36,7 @@ RSpec.describe 'recipes request', :vcr do
     describe 'edge cases' do
       context 'no params passed' do
         it 'picks random country using CountriesService' do
+          allow(CountriesFacade).to receive(:load_random_country).and_return("Caribbean Netherlands")
           get api_v1_recipes_path
 
           expect(response).to be_successful
