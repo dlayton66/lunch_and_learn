@@ -57,16 +57,11 @@ RSpec.describe 'users request' do
       end
 
       it "doesn't create user if email isn't unique" do
-        User.create(
-          name: "Drew",
-          email: "drew@drew.com",
-          password: "password123",
-          password_confirmation: "password123"
-        )
+        user = create(:user)
 
         bad_email_payload = {
           name: "Drew2",
-          email: "drew@drew.com",
+          email: user.email,
           password: "password123",
           password_confirmation: "password123"
         }

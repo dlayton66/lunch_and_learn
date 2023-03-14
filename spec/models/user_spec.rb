@@ -14,12 +14,7 @@ RSpec.describe User do
   describe 'callbacks' do
     describe '.generate_api_key' do
       it 'generates an api key on user creation' do
-        user = User.create!(
-          name: 'Drew', 
-          email: 'drew@drew.com',
-          password: 'password123',
-          password_confirmation: 'password123'
-        )
+        user = create(:user)
 
         expect(user.api_key).to be_a(String)
       end

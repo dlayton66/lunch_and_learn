@@ -2,14 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'favorites request' do
   let(:headers) { { 'CONTENT_TYPE' => 'application/json' } }
-  let!(:user) {
-    User.create(
-      name: "Drew",
-      email: "drew@drew.com",
-      password: "password123",
-      password_confirmation: "password123"
-    )
-  }
+  let!(:user) { create(:user) }
 
   describe 'create' do
     let(:payload) { {
