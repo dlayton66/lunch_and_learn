@@ -13,7 +13,6 @@ RSpec.describe 'favorites request' do
     } }
 
     it 'creates a favorite recipe for a user' do
-
       expect(Favorite.count).to eq(0)
 
       post api_v1_favorites_path, headers: headers, params: JSON.generate(payload)
@@ -94,7 +93,6 @@ RSpec.describe 'favorites request' do
           parsed_response = JSON.parse(response.body, symbolize_names: true)
 
           expect(parsed_response[:errors][0][:detail]).to eq("Couldn't find User")
-
         end
       end
     end
