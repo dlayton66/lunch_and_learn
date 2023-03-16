@@ -12,7 +12,7 @@
 
 ## Description
 
-Lunch and Learn is a backend API service which provides various types of food and culture information on a user-specified country.  It was created to satisfy the requirements for a Mod 3 solo project at the [Turing School of Software and Design](https://turing.edu/).  Project requirements can be found [here](https://backend.turing.edu/module3/projects/lunch_and_learn/requirements).
+Lunch and Learn is a backend API service which provides various food and culture information on a user-specified country.  It was created to satisfy the requirements for a Mod 3 solo project at the [Turing School of Software and Design](https://turing.edu/).  Project requirements can be found [here](https://backend.turing.edu/module3/projects/lunch_and_learn/requirements).
 
 ## Technical Details
 
